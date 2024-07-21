@@ -1,28 +1,60 @@
 import React from 'react';
-import {View, StyleSheet, Text, Image, SafeAreaView} from 'react-native';
+import { View, StyleSheet, Text, Image, SafeAreaView } from 'react-native';
 
 const App = () => {
   return (
-    <SafeAreaView style={{flex:1, justifyContent:'center', flexDirection:'column', alignItems:'center'}}>
-        <View style={{justifyContent:'center', flexDirection:'column'}}>
-          <View SafeArstyle={{borderWidth:1, height:20, width:120, backgroundColor:'red'}}>
-            <Text style={{fontWeight:'bold', textAlign:'center', color:'white'}}>History of Bicycle</Text>
-          </View>  
-          <View style={{flexDirection:'column', justifyContent:'center', alignItems:'center'}}>
-          <View style={{borderWidth:1, width:120, height:220}}>
-            <Text>A bicycle, also called a <Text style={{ color: 'red' }}>pedal cycle</Text>,
-            <Text style={{fontWeight:'bold'}}>bike</Text>, push-bike or cycle,
-              is a human-powered or motor powered assisted, pedal-driven, single-track
-              vehicle, having two wheels attached to a frame, one behind the other.
-              A bicycle rider is called a cyclist, or bicyclelist</Text>
-          </View>
-            <Image source={require('./assets/Image/Bicycle.jpg')} style={{width:100,height:100}}/>
-          </View>
+    <SafeAreaView style={styles.container}>
+      <View style={styles.titleContainer}>
+        <Text style={styles.titleText}>History of Bicycle</Text>
+      </View>
+      <View style={styles.contentContainer}>
+        <View style={styles.textContainer}>
+          <Text>A bicycle, also called a <Text style={{ color: 'red' }}>pedal cycle</Text>,
+            <Text style={{ fontWeight: 'bold' }}>bike</Text>, push-bike or cycle,
+            is a human-powered or motor powered assisted, pedal-driven, single-track
+            vehicle, having two wheels attached to a frame, one behind the other.
+            A bicycle rider is called a cyclist, or bicyclelist
+          </Text>
         </View>
-      </SafeAreaView>
+        <Image source={require('./assets/Image/Bicycle.jpg')} style={styles.image} />
+      </View>
+    </SafeAreaView>
   );
 }
 
-const styles = StyleSheet.create({})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 16,
+  },
+  titleContainer: {
+    borderWidth: 1,
+    backgroundColor: 'red',
+    width: 150,
+    padding: 4,
+    marginBottom: 8,
+  },
+  titleText: {
+    fontWeight: 'bold',
+    textAlign: 'center',
+    color: 'white',
+  },
+  contentContainer: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  textContainer: {
+    borderWidth: 1,
+    width: 150,
+    padding: 8,
+    marginBottom: 8,
+  },
+  image: {
+    width: 100,
+    height: 100,
+  },
+});
 
 export default App;
