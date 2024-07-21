@@ -1,8 +1,1 @@
-import FormRCC from "./components/FormRCC";
-import FormRFC from "./components/FormRFC";
 
-export default function App(){
-  return
-  <FormRCC />;
-  // <FormRFC />;
-}
