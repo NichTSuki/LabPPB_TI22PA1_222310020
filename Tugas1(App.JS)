@@ -1,0 +1,30 @@
+import React, { Component } from 'react';
+import {View, StyleSheet, Text, SafeAreaView, StatusBar, Image} from 'react-native';
+
+class App extends Component {
+  render() {
+    return (
+      <SafeAreaView style={styles.container}>
+      <Text style={{fontWeight:'bold', fontSize:20, textAlign:'center'}}>MY PROFILE</Text>
+      <View style={{flexDirection:'column-reverse',alignItems:'center'}}>
+        <View>
+          <Text>Nama: Nicholas Tony Sukino</Text>
+          <Text>NPM  : 222310020</Text>
+          <Text>Kelas : TI 22 PA</Text>
+        </View>
+          <Image source={require("./assets/Image/Profile.jpg")}style ={{width:200, height:200}}/>
+      </View>
+      </SafeAreaView>
+    );
+  }
+}
+
+const styles = StyleSheet.create({
+container:{
+  flex:1,
+  alignItems:'center',
+  justifyContent:'center',
+},
+});
+
+export default App;
