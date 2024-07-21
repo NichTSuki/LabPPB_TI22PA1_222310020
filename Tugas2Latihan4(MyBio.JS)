@@ -1,0 +1,30 @@
+import React from 'react';
+import {SafeAreaView, Text, StyleSheet} from 'react-native';
+
+var name = "Nicholas Tony Sukino"
+const MyBio = () => {
+    return (
+        <SafeAreaView>
+            <Text>NPM                     :  {types.npm}</Text>
+            <Text>Nama Depan       :  {types.n_d}</Text>
+            <Text>Nama Tengah     :  {types.n_t}</Text>
+            <Text>Nama Belakang  :  {types.n_b}</Text>
+            <Text>Sekolah                :  {types.sklh}</Text>
+            <Text>No HP                   :  {types.no_hp}</Text>
+            <Text>email                     :  {types.email}</Text>
+            <Text>TTL                        :  {types.ttl}</Text>
+            <Text>Jenis Kelamin      :  {types.jk}</Text>
+            <Text>Tinggi Badan        :  {types.tb}</Text>
+            <Text>Berat Badan         :  {types.bb}</Text>
+        </SafeAreaView>
+    );
+}
+
+const styles = StyleSheet.create({})
+
+export default MyBio;
+
+const types = {npm:"222310020", n_d:"Nicholas", n_t:"Tony",
+n_b:"Sukino", sklh:"SMA K Tunas Harapan", no_hp:"08811859230",
+email:"222310020@student.ibik.ac.id", ttl:"Bogor, 13 Februari 2004",
+jk:"Laki-Laki", tb:"170cm", bb:"45kg"}
