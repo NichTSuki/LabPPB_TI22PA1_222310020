@@ -1,0 +1,11 @@
+import React from "react";
+import {FlatList} from 'react-native'
+import FriendlistUI from "../widgets/FriendlistUI";
+
+const ExpFlatList = ({Data}) => {
+  return (
+    <FlatList data={Data} renderItem={({item}) => <FriendlistUI items={item} />} />
+  )
+}
+
+export default ExpFlatList
