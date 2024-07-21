@@ -1,0 +1,18 @@
+import React, { Component } from 'react';
+import {View, StyleSheet, SafeAreaView, Text, Image, StatusBar} from 'react-native';
+
+class App extends Component {
+  render() {
+    return (
+    <SafeAreaView style={{flex:1, backgroundColor:'purple'}}>
+      <View style={{flexDirection:'column-reverse', alignItems:'center'}}>
+        <Text style={{color:'white', fontSize:10}}>Loading...</Text>
+        <Image source={require('./assets//Image/LOGO_IBIK.png')} style={{width:75, height:75, marginTop:270, marginBottom:340}}/>
+      </View>
+    </SafeAreaView>
+    );
+  }
+}
+
+const styles = StyleSheet.create({})
+export default App;
