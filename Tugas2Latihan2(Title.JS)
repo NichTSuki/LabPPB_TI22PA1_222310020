@@ -1,0 +1,15 @@
+import React from 'react';
+import {View, StyleSheet, Text, SafeAreaView} from 'react-native';
+
+function Title(){    
+    return (
+        <View style={{borderWidth:0.1, width:120}}>
+            <Text style={{fontWeight:'bold', textAlign:'center', color:'white', backgroundColor:'red'}}>
+            History of Bicycle</Text>
+        </View>
+    );
+}
+
+const styles = StyleSheet.create({})
+
+export default Title;
