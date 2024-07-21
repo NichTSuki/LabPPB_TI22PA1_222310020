@@ -1,0 +1,6 @@
+import { Users } from "./src/components/const-data/user";
+import MyFriends from "./src/components/friends/MyFriends";
+
+export default function App(){
+  return <MyFriends />
+}
