@@ -1,0 +1,16 @@
+const Users = [
+  { id: 1, name: "Nicholas", fullname: "Nicholas Tony Sukino", gender: "M" },
+  { id: 2, name: "Sheryl", fullname: "Sheryl Fillia Sukino", gender: "F"},
+  { id: 3, name: "Kelvin", fullname: "Kelvin Jovanka", gender: "M" },
+  { id: 4, name: "Sandry", fullname: "Sandry Chandra Putra", gender: "M" },
+  { id: 5, name: "Julius", fullname: "Julius Taslim", gender: "M" },
+  { id: 6, name: "Yefta", fullname: "Yefta Julio Rusli", gender: "M" },
+  { id: 7, name: "Carlos", fullname: "Carlos Imanuel Tampubolon", gender: "M" },
+  { id: 8, name: "Sarah", fullname: "Siti Sarah", gender: "F" },
+  { id: 9, name: "Chandra", fullname: "Chandradinata", gender: "M" },
+  { id: 10, name: "Dandi", fullname: "Dandi Hendika", gender: "M" },
+  { id: 11, name: "Mira", fullname: "Mira Nur Aulia", gender: "F" },
+  { id: 12, name: "Rayyan", fullname: "Rayyan Pratama", gender: "M" },
+];
+
+export { Users };
