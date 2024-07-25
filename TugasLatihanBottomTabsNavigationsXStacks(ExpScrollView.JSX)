@@ -1,0 +1,18 @@
+import React from "react";
+import { Text, SectionList } from "react-native";
+import FriendlistUI from "../widgets/FriendListUI";
+import { Users } from "../../const-data/user";
+
+const ExpSectionList = ({Data}) => {
+  const data = [{title: "Suggested", data: Data},
+                {title: "Followers", data: Data}];
+  return (
+    <SectionList sections={data}
+                  renderItem={({item}) => <FriendlistUI items={item}/>}
+                  renderSectionHeader={({section: {title}}) => (
+                  <Text style={{color:"white"}}>{title}</Text>
+                  )}/>
+  );
+};
+
+export default ExpSectionList;
