@@ -1,0 +1,133 @@
+import { StatusBar } from 'expo-status-bar';
+import { StyleSheet, Text, TextInput, SafeAreaView, View, Image, Button, TouchableOpacity, Alert, BackHandler } from 'react-native';
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import Icon from 'react-native-vector-icons/MaterialIcons';
+import MyFriends from './src/components/friends/MyFriends';
+import React, { useEffect } from 'react';
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+
+// Tab Navigator
+function TabNavigator() {
+  return (
+    <Tab.Navigator
+      screenOptions={({ route }) => ({
+        tabBarIcon: ({ focused, color, size }) => {
+          let iconName;
+
+          if (route.name === 'Home') {
+            iconName = focused ? 'home' : 'home';
+          } else if (route.name === 'Search') {
+            iconName = focused ? 'search' : 'search';
+          }
+
+          return <Icon name={iconName} size={size} color={color} />;
+        },
+        tabBarActiveTintColor: 'tomato',
+        tabBarInactiveTintColor: 'gray',
+      })}
+    >
+      <Tab.Screen name="Home" component={Home} options={{ headerShown: false }} />
+      <Tab.Screen name="Search" component={Search} options={{ headerShown: false }} />
+    </Tab.Navigator>
+  );
+}
+
+// Screen Components
+function Home({ navigation }) {
+  useEffect(() => {
+    Alert.alert("Welcome", "You are now on the Home screen");
+
+    const backAction = () => {
+      Alert.alert("Hold on!", "Are you sure you want to log out?", [
+        {
+          text: "Cancel",
+          onPress: () => null,
+          style: "cancel"
+        },
+        { 
+          text: "YES", 
+          onPress: () => navigation.replace("NavigateHome") // Navigate back to login screen
+        }
+      ]);
+      return true;
+    };
+
+    const backHandler = BackHandler.addEventListener(
+      "hardwareBackPress",
+      backAction
+    );
+
+    return () => backHandler.remove();
+  }, [navigation]);
+
+  return (
+    <SafeAreaView>
+      <Image source={require("./assets/icons/WhatsApp Image 2024-07-25 at 22.11.43_982c5886.png")} style={{ width: 370, height: 695 }} />
+    </SafeAreaView>
+  );
+}
+
+function Search() {
+  return (
+    <MyFriends />
+  );
+}
+
+function NavigateHome({ navigation }) {
+  const handleLogin = () => {
+    navigation.navigate("TabNavigator", { screen: "Home" });
+  };
+
+  return(
+    <SafeAreaView style={styles.outerBox}>
+          <View style={styles.innerBox}>
+            <Text style={{...styles.text, fontWeight: 'bold', padding: 12, textAlign:'center' }}>Login / Register</Text>
+            <TouchableOpacity onPress={handleLogin}>
+                    <View style={{backgroundColor:"purple", padding:10, borderRadius:10, margin:10}}><Text style={{textAlign:'center', color:'white'}}>Login</Text></View>
+                </TouchableOpacity>
+              <View>
+                <View style={{backgroundColor:'purple', padding:10, borderRadius:10, margin:10 }}>
+                <TouchableOpacity><Text style={{textAlign:"center", color:'white'}}>Register</Text></TouchableOpacity>
+              </View>
+            </View>
+          </View>
+        </SafeAreaView>
+  );
+}
+
+export default function App() {
+  return (
+    <NavigationContainer>
+      <Stack.Navigator>
+        <Stack.Screen name="NavigateHome" component={NavigateHome} options={{headerShown:false}} />
+        <Stack.Screen name="TabNavigator" component={TabNavigator} options={{ headerShown: false }} />
+      </Stack.Navigator>
+    </NavigationContainer>
+  );
+}
+
+const styles = StyleSheet.create({
+  outerBox:{
+    flex:1,
+    justifyContent:'center',
+    alignItems:'center',
+    padding:20,
+    backgroundColor:'#f0f0f0'
+  },
+  innerBox:{
+    borderWidth:1,
+    borderColor:'black',
+    padding:20,
+    borderRadius:10,
+    width:300,
+    height:200
+  },
+  text: {
+    fontSize: 20,
+    fontFamily:'Helvetica',
+  }
+});
