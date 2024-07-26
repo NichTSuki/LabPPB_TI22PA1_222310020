@@ -1,0 +1,206 @@
+import { StyleSheet, Text, View, TextInput, TouchableOpacity, Modal, Alert, Pressable, ImageBackground } from 'react-native';
+import React, { useState } from 'react';
+import Icon from 'react-native-vector-icons/MaterialIcons';
+
+export default function App() {
+  const [isVisible, setIsVisible] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const openBottomSheet = () => {
+    setIsVisible(true);
+  };
+
+  const closeBottomSheet = () => {
+    setIsVisible(false);
+  };
+
+  const myEmail = "222310020@student.ibik.ac.id";
+  const myPassword = "BESTstudent_2024";
+
+  const validatePassword = (pass) => {
+    const hasAlphabet = /[a-zA-Z]/.test(pass);
+    const hasNumber = /[0-9]/.test(pass);
+    const hasSymbol = /[!@#$%^&*(),._?":{}|<>]/.test(pass);
+
+    return hasAlphabet && hasNumber && hasSymbol;
+  };
+
+  const SigninHandler = () => {
+    if (!email && !password) {
+      Alert.alert(
+        "Input Error",
+        "Email and Password must be filled",
+        [{ text: "OK", onPress: () => console.log("OK Pressed") }]
+      );
+    } else if (!email) {
+      Alert.alert(
+        "Input Error",
+        "Email must be filled",
+        [{ text: "OK", onPress: () => console.log("OK Pressed") }]
+      );
+    } else if (!password) {
+      Alert.alert(
+        "Input Error",
+        "Password must be filled",
+        [{ text: "OK", onPress: () => console.log("OK Pressed") }]
+      );
+    } else if (password.length < 3) {
+      Alert.alert(
+        "Password Error",
+        "Password must be at least 3 characters long",
+        [{ text: "OK", onPress: () => console.log("OK Pressed") }]
+      );
+    } else if (!validatePassword(password)) {
+      Alert.alert(
+        "Password Error",
+        "Password must contain alphabet, number, and symbol",
+        [{ text: "OK", onPress: () => console.log("OK Pressed") }]
+      );
+    } else if (email === myEmail && password === myPassword) {
+      Alert.alert(
+        "Login Success",
+        `Welcome, ${email}`,
+        [{ text: "OK", onPress: () => console.log("OK Pressed") }]
+      );
+    } else {
+      Alert.alert(
+        "Login Failed",
+        "Email / Password is not match !",
+        [{ text: "OK", onPress: () => console.log("OK Pressed") }]
+      );
+    }
+  };
+
+  return (
+    <View style={styles.container}>
+      <ImageBackground source={require('./assets/icon/WhatsApp Image 2024-07-26 at 12.41.11_e72ddf94.jpg')} 
+      // style={styles.container}
+    ></ImageBackground>
+      <TouchableOpacity style={styles.centerButton} onPress={openBottomSheet}>
+        <Text style={styles.btnText}>Signin</Text>
+      </TouchableOpacity>
+      <Modal transparent={true} visible={isVisible} animationType="slide">
+        <View style={styles.modalContainer}>
+          <View style={styles.bottomSheet}>
+            <Text>Email</Text>
+            <TextInput
+              style={styles.input}
+              placeholder='npm@student.ibik.ac.id'
+              value={email}
+              onChangeText={setEmail}
+            />
+            <View style={styles.passwordContainer}>
+              <Text style={styles.label}>Password</Text>
+              <View style={styles.passwordInputContainer}>
+                <TextInput
+                  style={styles.passwordInput}
+                  placeholder='Password'
+                  value={password}
+                  onChangeText={setPassword}
+                  secureTextEntry={!isPasswordVisible}
+                />
+                <Pressable style={styles.passwordIconContainer} onPress={() => setIsPasswordVisible(!isPasswordVisible)}>
+                  <Icon
+                    name={isPasswordVisible ? 'visibility' : 'visibility-off'}
+                    size={24}
+                    color="gray"
+                  />
+                </Pressable>
+              </View>
+            </View>
+            <TouchableOpacity style={styles.signinButton} onPress={SigninHandler}>
+              <Text style={styles.loginButtonText}>Sign in</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.closeButton} onPress={closeBottomSheet}>
+              <Text style={styles.closeButtonText}>Close</Text>
+            </TouchableOpacity>
+          </View>
+        </View>
+      </Modal>
+    </View>
+  );
+}
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  centerButton: {
+    backgroundColor: 'blue',
+    padding: 15,
+    borderRadius: 30,
+  },
+  btnText: {
+    color: 'white',
+  },
+  modalContainer: {
+    flex: 1,
+    justifyContent: 'flex-end',
+    backgroundColor: 'rgba(0,0,0,0.5)',
+  },
+  bottomSheet: {
+    backgroundColor: 'white',
+    padding: 20,
+    borderTopLeftRadius: 20,
+    borderTopRightRadius: 20,
+    height: '50%',
+  },
+  label: {
+    fontSize: 16,
+    marginBottom: 5,
+    color: 'black',
+  },
+  input: {
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5,
+    marginBottom: 10,
+    paddingHorizontal: 10,
+  },
+  passwordContainer: {
+    marginBottom: 10,
+  },
+  passwordInputContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    position: 'relative',
+  },
+  passwordInput: {
+    flex: 1,
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    borderRadius: 5,
+    paddingHorizontal: 10,
+  },
+  passwordIconContainer: {
+    position: 'absolute',
+    right: 10,
+    height: '100%',
+    justifyContent: 'center',
+  },
+  signinButton: {
+    backgroundColor: 'blue',
+    paddingVertical: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+  },
+  loginButtonText: {
+    color: 'white',
+  },
+  closeButton: {
+    backgroundColor: 'red',
+    paddingVertical: 15,
+    borderRadius: 5,
+    marginTop: 10,
+    alignItems: 'center',
+  },
+  closeButtonText: {
+    color: 'white',
+  },
+});
